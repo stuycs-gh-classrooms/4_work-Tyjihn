@@ -5,4 +5,7 @@ ellipse(300, 250, 300, 280);
 fill(216, 0, 51);
 arc(250, 240, 50, 70, 0, PI, CHORD); 
 fill(255, 246, 237);
-arc(250, 200, 100, 60, QUARTER_PI, QUARTER_PI);
+  arc(250, 200, 100, 60, QUARTER_PI, QUARTER_PI);
+fill(0);
+circle(200, 220, 10);
+circle(310, 220, 12);
