@@ -27,18 +27,22 @@ void draw() {
   drawCircle(angle, spiralRadius, width/2, sinAmplitude*2 + circRadius*3);
 
   angle++;
+
+  println("Frame: " + frameCount);
 }//draw
 
 void drawSinCurve(int degrees, int amplitude, float yOffset) {
-  yOffset = amplitude * sin( radians(degrees) ) + yOffset;
-  circle(angle, yOffset, dotDiameter);
   if (angle >= width) {
     angle = 0;
   }
+  yOffset = amplitude * sin( radians(degrees) ) + yOffset;
+  circle(angle, yOffset, dotDiameter);
 }
-void drawCircle(int degrees, int radius, int xOffset, float yOffset) {
-//  yOffset = X^2-radius^2;
-  noFill();
-  circle(xOffset, yOffset, radius*2);
-  circle(degrees, yOffset, dotDiameter);
+void drawCircle(int degrees, int radius, float xOffset, float yOffset) {
+  xOffset = radius * cos( radians(degrees)) + xOffset;
+  yOffset = radius * sin( radians(degrees)) + yOffset;
+  circle(xOffset, yOffset, dotDiameter);
+  if (angle % 360 == 0) {
+    spiralRadius -= 5;
+  }
 }
