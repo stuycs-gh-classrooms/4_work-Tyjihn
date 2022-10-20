@@ -41,8 +41,8 @@ void draw() {
 
 void drawSinCurve(int degrees, int amplitude, float yOffset) {
   yOffset = amplitude * sin( radians(degrees) ) + yOffset;
+  
   circle(angle % width, yOffset, dotDiameter);
-
 }
 
 void drawCircle(int degrees, int radius, float xOffset, float yOffset) {
