@@ -1,4 +1,3 @@
-
 //Global variables for the "spaceship" that goes across the top of the screen.
 int topX, topY, topRadius;
 
@@ -32,7 +31,7 @@ void setup() {
    starts fully visible on the right side just below
    the spaceship circle.
    */
-  gridX = topRadius;
+  gridX = 7*radius;
   gridY = 2*topRadius + radius;
 
   /* PART 2
@@ -40,7 +39,7 @@ void setup() {
    stars by moving to the right by the width
    of a full circle.
    */
-  invaderSpeed = 0;
+  invaderSpeed = 2*radius;
 }//setup
 
 
@@ -58,7 +57,7 @@ void draw() {
    left side.
    */
   //CODE GOES HERE
-  if (topX <= width) {
+  if (topX + topRadius <= width) {
     topX ++;
   } else {
     topX = topRadius;
@@ -74,8 +73,10 @@ void draw() {
    the invaderSpeed global variable.
    */
   //CODE GOES HERE
-  
-
+  println(frameCount);
+  if (frameCount % 30 == 0) {
+    gridX += invaderSpeed;
+  }
 
   /* Part 2 SECOND
    When the invader grid would go past the right edge,
@@ -85,6 +86,15 @@ void draw() {
    screen.
    */
   //CODE GOES HERE
+  if (gridX + radius > width) {
+   gridY += 2*radius; 
+   gridX -= invaderSpeed;
+   while (gridX >= 7*radius) {
+     if (frameCount % 30 == 0) {
+      gridX -= invaderSpeed;
+     }
+   }
+  }
 
 
   /* Part 2 THIRD
@@ -122,7 +132,19 @@ void drawSpaceShip(int shipX, int shipY, int d) {
  (startX, startY)
  */
 void circleGrid(int startX, int startY, int numRows, int numCols, int d) {
-  for(int count=0  
+  int rows, cols;
+  cols = 0;
+
+  for (rows = 0; rows < numRows; rows++) {
+    if (cols >= numCols) {
+      startY += d;
+      startX = 7*radius;
+      cols = 0;
+    }
+    for (cols = 0; cols < numCols; cols++) {
+      circle(startX, startY, d);
+      startX -= d;
+    }
   }
 }//circleGrid
 
