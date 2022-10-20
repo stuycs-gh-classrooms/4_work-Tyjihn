@@ -8,7 +8,7 @@ int petalRadius;
 void setup() {
   size(600, 600);
   background(0);
-  frameRate(500);
+  frameRate(200);
 
   dotDiameter = 4;
   sinAmplitude = 100;
