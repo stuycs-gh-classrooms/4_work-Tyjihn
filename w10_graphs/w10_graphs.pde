@@ -15,6 +15,9 @@ void setup() {
   spiralRadius = 100;
   angle = 0;
   stroke(255);
+
+
+  frameRate(240);
 }//setup
 
 void draw() {
@@ -25,6 +28,11 @@ void draw() {
   drawCircle(angle, circRadius, width/2, sinAmplitude*2 + circRadius);
   //concentric circles
   drawCircle(angle, spiralRadius, width/2, sinAmplitude*2 + circRadius*3);
+  if (angle > 0) {
+    if (angle % 360 == 0) {
+      spiralRadius -= 10;
+    }
+  }
 
   angle++;
 
@@ -32,17 +40,14 @@ void draw() {
 }//draw
 
 void drawSinCurve(int degrees, int amplitude, float yOffset) {
-  if (angle >= width) {
-    angle = 0;
-  }
   yOffset = amplitude * sin( radians(degrees) ) + yOffset;
-  circle(angle, yOffset, dotDiameter);
+  circle(angle % width, yOffset, dotDiameter);
+
 }
+
 void drawCircle(int degrees, int radius, float xOffset, float yOffset) {
   xOffset = radius * cos( radians(degrees)) + xOffset;
   yOffset = radius * sin( radians(degrees)) + yOffset;
+
   circle(xOffset, yOffset, dotDiameter);
-  if (angle % 360 == 0) {
-    spiralRadius -= 5;
-  }
 }
