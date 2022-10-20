@@ -73,7 +73,6 @@ void draw() {
    the invaderSpeed global variable.
    */
   //CODE GOES HERE
-  println(frameCount);
   if (frameCount % 30 == 0) {
     gridX += invaderSpeed;
   }
@@ -87,13 +86,9 @@ void draw() {
    */
   //CODE GOES HERE
   if (gridX + radius > width) {
-   gridY += 2*radius; 
-   gridX -= invaderSpeed;
-   while (gridX >= 7*radius) {
-     if (frameCount % 30 == 0) {
-      gridX -= invaderSpeed;
-     }
-   }
+    gridY += 2*radius;
+    invaderSpeed = -(invaderSpeed);
+    gridX += invaderSpeed;
   }
 
 
@@ -105,6 +100,11 @@ void draw() {
    screen.
    */
   //CODE GOES HERE
+  if (gridX < 2*radius * numCircleCols - radius) {
+    gridY += 2*radius;
+    invaderSpeed = -(invaderSpeed);
+    gridX += invaderSpeed;
+  }
 
 
   /* Part 2 THIRD
@@ -113,6 +113,10 @@ void draw() {
    again.
    */
   //CODE GOES HERE
+  if (gridY + radius * (2 * numCircleRows - 1) > height) {
+    gridX = 7*radius;
+    gridY = 2*topRadius + radius;
+  }
 }//draw
 
 /* PART 0
@@ -132,16 +136,15 @@ void drawSpaceShip(int shipX, int shipY, int d) {
  (startX, startY)
  */
 void circleGrid(int startX, int startY, int numRows, int numCols, int d) {
-  int rows, cols;
-  cols = 0;
+  numCols = 0;
 
-  for (rows = 0; rows < numRows; rows++) {
-    if (cols >= numCols) {
+  for (numRows = 0; numRows < numCircleRows; numRows++) {
+    if (numCols == numCircleCols) {
       startY += d;
-      startX = 7*radius;
-      cols = 0;
+      startX += numCols * d;
+      numCols = 0;
     }
-    for (cols = 0; cols < numCols; cols++) {
+    for (numCols = 0; numCols < numCircleCols; numCols++) {
       circle(startX, startY, d);
       startX -= d;
     }
