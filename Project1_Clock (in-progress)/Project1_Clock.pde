@@ -6,10 +6,6 @@ int randomR, randomG, randomB;
 
 float angle, spiralAngle, xOffset, yOffset;
 int dotDiameter;
-int sinAmplitude;
-int circRadius;
-int spiralRadius;
-int petalRadius;
 
 void setup () {
   size (600,600);
