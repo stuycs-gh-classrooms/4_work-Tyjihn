@@ -8,7 +8,7 @@ float angle, spiralAngle, xOffset, yOffset;
 int dotDiameter;
 
 void setup () {
-  size (600,600);
+  size (600, 600);
   background (#EDFFF9);
   frameRate (200);
   sec = second();
@@ -16,32 +16,30 @@ void setup () {
   hr = hour();
   xCenter = width/2;
   yCenter = height/2;
-  
+
   dotDiameter = 4;
   angle = 0;
   spiralAngle = 0;
   changeColor();
-}
 
-void draw () {
-  changeColor();
-  
   stroke(0);
   fill(#D3D3D3);
   clockFace (xCenter, yCenter, 350);
   drawHand (xCenter, yCenter);
-  
+}
+
+void draw () {
   changeColor();
   drawPattern(angle, 100, 300, 300);
   otherGraph (angle, 300, xOffset, yOffset);
   angle += 0.05;
-  
+
   stroke(0);
-  clockFace (xCenter, yCenter, 350);
-  drawHand (xCenter, yCenter);
-  
+  clockFace(xCenter, yCenter, 350);
+  drawHand(xCenter, yCenter);
+
   if (frameCount % 200 == 0) {
-  updateTime ();
+    updateTime ();
   }
 }
 
@@ -68,15 +66,13 @@ void updateTime () {
 
 float timetoAngle (String time) {
   if (time == "hr") {
-    float hrAngle = hr*30;
+    float hrAngle = hr*30 - 90;
     return radians (hrAngle);
-  }
-  else if (time == "min") {
-    float minAngle = min*6;
+  } else if (time == "min") {
+    float minAngle = min*6 - 90;
     return radians (minAngle);
-  }
-  else if (time == "sec") {
-    float secAngle = sec*6;
+  } else if (time == "sec") {
+    float secAngle = sec*6 - 90;
     return radians (secAngle);
   }
   return 0;
@@ -95,15 +91,13 @@ void drawHand (int xCenter, int yCenter) {
 }
 
 int handLength(String Length) {
- if (Length == "hr") {
+  if (Length == "hr") {
     int hrHandLength = 100;
     return hrHandLength;
-  }
-  else if (Length == "min") {
+  } else if (Length == "min") {
     int minHandLength = 120;
     return minHandLength;
-  }
-  else if (Length == "sec") {
+  } else if (Length == "sec") {
     int secHandLength = 160;
     return secHandLength;
   }
@@ -131,5 +125,16 @@ void changeColor() {
     randomG = int(random(100, 255));
     randomB = int(random(100, 255));
     stroke(randomR, randomG, randomB);
+  }
+}
+
+void timeMarks (int offsetFromCircle, int tickLength) {
+  offsetFromCircle = yCenter - radius + offsetFromCircle;
+  float angle = 0;
+
+  while (angle < 360) {
+    angle = radians(angle);
+    line(xCenter + cos(angle), offsetFromCircle + sin(angle), xCenter + tickLength * cos(angle), offsetFromCircle + tickLength * sin(angle));
+    angle = angle * 6 - 90;
   }
 }
