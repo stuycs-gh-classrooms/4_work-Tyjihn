@@ -21,8 +21,8 @@ void makeLines(int[] xs, int[] ys, int points) {
     points = 100;
   }
   for (int i = 0; i < points; i++) {
-    xs[i] = int(random(0, 600));
-    ys[i] = int(random(0, 400));
+    xs[i] = int(random(0, width));
+    ys[i] = int(random(0, height));
   }
 }
 
