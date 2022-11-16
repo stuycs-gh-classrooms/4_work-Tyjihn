@@ -14,7 +14,7 @@ void setup() {
 }
 
 void draw() {
-  //background(0);
+  background(0);
   drawLines(xvals, yvals);
 }
 
