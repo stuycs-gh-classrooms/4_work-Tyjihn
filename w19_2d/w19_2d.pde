@@ -20,18 +20,18 @@ void setup() {
   size(700, 350);
   frameRate(5);
   grid = new Land[10][20];
-  for(int i=0; i < grid.length; i++) {
-  setupLand(grid[i], tractLength, grassDensity, i);
-  showLand(grid[i]);
+  for (int i=0; i < grid.length; i++) {
+    setupLand(grid[i], tractLength, grassDensity, i);
+    showLand(grid[i]);
   }
 }//setup
 
 void draw() {
-  for(int i=0; i < grid.length; i++) {
-  showLand(grid[i]);
-  if (burning) {
-    liveFire(grid[i]);
-  }//burning
+  for (int i=0; i < grid.length; i++) {
+    showLand(grid[i]);
+    if (burning) {
+      liveFire(grid[i]);
+    }//burning
   }
 }//draw
 
@@ -84,8 +84,8 @@ void keyPressed() {
   }//start burning
   else if (key == 'r') {
     burning = false;
-    for(int i=0; i < grid.length; i++) {
-    setupLand(grid[i], tractLength, grassDensity, i);
-  }
+    for (int i=0; i < grid.length; i++) {
+      setupLand(grid[i], tractLength, grassDensity, i);
+    }
   }
 }
