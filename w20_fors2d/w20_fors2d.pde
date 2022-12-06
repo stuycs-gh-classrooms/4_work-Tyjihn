@@ -42,6 +42,7 @@ void draw() {
 void setupLand(Land[][] field, int numRows, int numPlots, int density) {
   //figure out size of each plot of land
   int plotSize = width / numPlots;
+  int plotHeight = height / numRows;
 
   //instantiate each Land object
   for (int r=0; r < field.length; r++) {
