@@ -14,6 +14,7 @@ color GRASS_COLOR = #49B90D;
 boolean burning = false;
 int grassDensity = 75;
 int tractLength = 20;
+int tractHeight = 10;
 Land grid[][];
 
 void setup() {
@@ -22,7 +23,7 @@ void setup() {
   grid = new Land[10][20];
   for (int r=0; r < grid.length; r++) {
     for (int i=0; i < grid[r].length; i++) {
-      setupLand(grid[r][i], r, tractLength, grassDensity);
+      setupLand(grid[r][i], tractHeight, tractLength, grassDensity);
       showLand(grid[r][i]);
     }
   }
@@ -50,7 +51,7 @@ void setupLand(Land[][] field, int numRows, int numPlots, int density) {
       int type = DIRT;
 
       //first Land object should be FIRE
-      if (i == 0) {
+      if (i == 0 && r == 0) {
         type = FIRE;
       }//start with fire
 
@@ -60,7 +61,7 @@ void setupLand(Land[][] field, int numRows, int numPlots, int density) {
       }//grass land
 
       //creates a new land at (x, y) with size plotSize and type
-      field[r][i] = new Land(i*plotSize, r*numRows, r * plotSize, plotSize);
+      field[r][i] = new Land(i*plotSize, r*plotHeight, r * plotSize, plotSize);
     }//setup loop
   }
 }//setupLand
@@ -97,10 +98,6 @@ void keyPressed() {
   }//start burning
   else if (key == 'r') {
     burning = false;
-    for (int r=0; r < grid.length; r++) {
-      for (int i=0; i < grid[r].length; i++) {
-        setupLand(grid[r][i], r, tractLength, grassDensity);
-      }
-    }
+    setupLand(grid, tractHeight, tractLength, grassDensity);
   }
 }
