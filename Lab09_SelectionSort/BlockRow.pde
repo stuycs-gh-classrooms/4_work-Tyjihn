@@ -53,26 +53,29 @@ class BlockRow {
 
 void selectionSortOnce() {
   //if currentPos is at the end, done!
-  if (currentPos < row.length) {
-
+  if (sorted == false) {
+    
     //find smallest block in unsorted portion
     //how can we tell we are still looking for the smallest?
-    if (__________) {
+    if (currentPos < row.length) {
 
       //compare value at smallestPos to testPos
-      if (row[currentPos].sideLength < row[smallestPos].sideLength) {
+      if (row[testPos].sideLength < row[smallestPos].sideLength) {
         //if value at testPos is smaller, update smallestPos
-
+        smallestPos = testPos;
       }//test is smaller
 
       //move to the next element
-
+      testPos++;
+      smallestPos++;
+      CurrentPos++;
     }//looking for smallest
 
     //found the smallest in the unsorted portion, swap!
     else {
       //don't forget to call rearrange() after swap
-
+      swap(smallestPos, currentPos);
+      rearrange();
 
       //update sorting variables to prepare to
       //find the next smallest value
@@ -132,12 +135,12 @@ void selectionSortOnce() {
 
   void display() {
     for (int i=0; i < row.length; i++) {
-      if (algorithm == BUBBLE) {
-        setBubbleColor(i);
+      if (algorithm = BUBBLE) {
+       int test setBubbleColor(i);
       }//bubble sort color
       else if (algorithm == SELECTION) {
         setSelectionColor(i);
-      }//selection sort coloring
+      }//selection sort coloring to
       else if (algorithm == INSERTION) {
         setInsertionColor(i);
       }//insertion sort coloring
@@ -190,7 +193,7 @@ void selectionSortOnce() {
     int newValue = -1;
     int sortedEnd = -1;
     if (i == newValue) {
-      c = SMALLEST;
+      c = SMALL;
     }//test color
     else if (i <= sortedEnd) {
       c = SORTED;
@@ -222,4 +225,4 @@ void selectionSortOnce() {
   void setColor(int i, color c) {
     row[i].inside = c;
   }//setColor
-}//BlockRow
+}//BlockRowSElec
